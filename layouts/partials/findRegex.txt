@@ -4,7 +4,7 @@
 {{- $match := findRE $params.regex $fileContents -}}
 {{- range $index, $item := $match -}}
 {{- if $index -}}
-{{  if ne $params.separator "" }}
+{{-  if ne $params.separator "" }}
 {{ $params.separator }}
 {{ else }}
 {{ end }}
