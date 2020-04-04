@@ -1,1 +1,13 @@
-{{- partial "snippet.txt" .Params -}}
+{{- $inputParams := "" -}}
+{{- $pageDir := path.Join "content" .Page.Dir -}}
+{{- if .IsNamedParams -}}
+{{- $inputParams = merge (dict "path" $pageDir) .Params -}}
+{{- else -}}
+{{- if eq (len .Params) 1 -}}
+{{- $inputParams = .Params | append $pageDir -}}
+{{- else -}}
+{{- $inputParams = .Params  -}}
+{{- end -}}
+{{- end -}}
+{{- $params := partial "snippetParams.txt" $inputParams -}}
+{{- partial "snippet.txt" $params -}}

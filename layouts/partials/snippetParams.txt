@@ -2,6 +2,6 @@
 {{- if reflect.IsMap .  -}}
 {{- $params = dict "snippet" (index . "snippet") "path" (index . "path") "separator" (default "" ( index . "separator" )) -}}
 {{- else -}}
-{{- $params = dict "snippet" (index . 0) "path" (default "./code" (index . 1)) "separator" (default "" (index . 2))  -}}
+{{- $params = dict "snippet" (index . 0) "path" (index . 1) "separator" (default "" (index . 2))  -}}
 {{- end -}}
 {{ return $params }}

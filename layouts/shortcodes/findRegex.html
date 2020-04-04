@@ -1,1 +1,13 @@
-{{- partial "findRegex.txt" .Params -}}
+{{- $inputParams := "" -}}
+{{- $pageDir := path.Join "content" .Page.Dir -}}
+{{- if .IsNamedParams -}}
+{{- $inputParams = merge (dict "path" $pageDir) .Params -}}
+{{- else -}}
+{{- if eq (len .Params) 2 -}}
+{{- $inputParams = .Params | append $pageDir -}}
+{{- else -}}
+{{- $inputParams = .Params  -}}
+{{- end -}}
+{{- end -}}
+{{- $params := partial "findRegexParams.txt" $inputParams -}}
+{{- partial "findRegex.txt" $params -}}
