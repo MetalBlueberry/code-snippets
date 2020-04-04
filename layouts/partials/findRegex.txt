@@ -1,7 +1,7 @@
 
-{{ $regex := .regex }}
-{{ $replace := .replace }}
-{{ $separator := .separator }}
+{{- $regex := .regex -}}
+{{- $replace := .replace -}}
+{{- $separator := .separator -}}
 {{- if ( fileExists .path ) -}}
 {{- $fileContents := partial "fileContents.txt" .path -}}
 {{- $match := findRE .regex $fileContents -}}
