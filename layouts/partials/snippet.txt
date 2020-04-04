@@ -1,4 +1,4 @@
 {{- $params := partial "snippetParams.txt" . -}}
 {{- $regex :=  printf "(?s)%s START.(.*?).%s END" $params.snippet $params.snippet -}}
-{{- $findREParams := (merge $params (dict "regex" $regex "replace" "$1")) -}}
-{{ partial "findRE.txt" $findREParams }}
+{{- $findRegexParams := (merge $params (dict "regex" $regex "replace" "$1")) -}}
+{{ partial "findRegex.txt" $findRegexParams }}

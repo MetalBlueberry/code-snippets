@@ -1,4 +1,4 @@
-{{- $params := partial "findREParams.txt" . -}}
+{{- $params := partial "findRegexParams.txt" . -}}
 {{- if ( fileExists $params.path ) -}}
 {{- $fileContents := partial "fileContents.txt" $params.path -}}
 {{- $match := findRE $params.regex $fileContents -}}
