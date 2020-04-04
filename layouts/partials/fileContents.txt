@@ -1,0 +1,12 @@
+{{/* Recursively finds files in a given dir a retruns all the content as a string */}}
+{{- $base := . -}}
+{{- $file := os.Stat . -}}
+{{- if $file.IsDir -}}
+    {{- $files := readDir . -}}
+    {{- range $files -}}
+        {{- $path := path.Join $base .Name -}}
+        {{- partial "fileContents.txt" $path -}}
+    {{- end -}}
+{{- else }}
+{{ readFile . }}
+{{ end -}}

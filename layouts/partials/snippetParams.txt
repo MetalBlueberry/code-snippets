@@ -1,0 +1,7 @@
+{{ $params := dict  }}
+{{- if .IsNamedParams -}}
+{{- $params = dict "snippet" (.Get "snippet") "path" (.Get "path") "separator" (default "" ( .Get "separator" )) -}}
+{{- else -}}
+{{- $params = dict "snippet" (.Get 0) "path" (default "./code" (.Get 1)) "separator" (default "" (.Get 2))  -}}
+{{- end -}}
+{{ return $params }}
