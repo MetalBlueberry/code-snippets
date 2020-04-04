@@ -2,11 +2,11 @@
 {{- $base := . -}}
 {{- $file := os.Stat . -}}
 {{- if $file.IsDir -}}
-    {{- $files := readDir . -}}
-    {{- range $files -}}
-        {{- $path := path.Join $base .Name -}}
-        {{- partial "fileContents.txt" $path -}}
-    {{- end -}}
-{{- else }}
-{{ readFile . }}
-{{ end -}}
+{{- $files := readDir . -}}
+{{- range $files -}}
+{{- $path := path.Join $base .Name -}}
+{{- partial "fileContents.txt" $path -}}
+{{- end -}}
+{{- else -}}
+{{- readFile . -}}
+{{- end -}}

@@ -1,4 +1,3 @@
-
 {{- $regex := .regex -}}
 {{- $replace := .replace -}}
 {{- $separator := .separator -}}
@@ -7,13 +6,13 @@
 {{- $match := findRE .regex $fileContents -}}
 {{- range $index, $item := $match -}}
 {{- if $index -}}
-{{-  if ne $separator "" }}
+{{- if $separator }}
 {{ $separator }}
 {{ else }}
-{{ end }}
+{{ end -}}
 {{- end -}}
 {{- replaceRE $regex $replace . | safeHTML -}}
 {{- end -}}
 {{- else -}}
-File path {{ .path }} do not exist 
+File path {{ .path }} do not exist
 {{- end -}}

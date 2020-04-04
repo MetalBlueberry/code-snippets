@@ -1,7 +1,7 @@
 {{ $params := dict }}
-{{- if reflect.IsMap .  -}}
+{{- if reflect.IsMap . -}}
 {{- $params = dict "regex" (index . "regex") "replace" (default "$0" (index . "replace")) "path" (index . "path") "separator" (default "" ( index . "separator" )) -}}
 {{- else -}}
 {{- $params = dict "regex" (index . 0) "replace" (default "$0" (index . 1)) "path"  (index . 2) "separator" (default "" (index . 3))  -}}
 {{- end -}}
-{{ return $params }}
+{{- return $params -}}
