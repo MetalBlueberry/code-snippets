@@ -1,7 +1,7 @@
-{{ $params := dict  }}
-{{- if .IsNamedParams -}}
-{{- $params = dict "snippet" (.Get "snippet") "path" (.Get "path") "separator" (default "" ( .Get "separator" )) -}}
+{{ $params := dict }}
+{{- if reflect.IsMap .  -}}
+{{- $params = dict "snippet" (index . "snippet") "path" (index . "path") "separator" (default "" ( index . "separator" )) -}}
 {{- else -}}
-{{- $params = dict "snippet" (.Get 0) "path" (default "./code" (.Get 1)) "separator" (default "" (.Get 2))  -}}
+{{- $params = dict "snippet" (index . 0) "path" (default "./code" (index . 1)) "separator" (default "" (index . 2))  -}}
 {{- end -}}
 {{ return $params }}

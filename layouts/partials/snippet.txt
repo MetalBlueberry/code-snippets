@@ -1,19 +1,4 @@
-{{/* Given the parameters snippetName and fileName, loads file text using fileContents.txt partial 
-and tries to find the snippet by name. Snippets are defined by the format <Name> START<code><Name> END*/}}
 {{- $params := partial "snippetParams.txt" . -}}
-{{- if ( fileExists $params.path ) -}}
-{{- $fileContents := partialCached "fileContents.txt" $params.path $params.path }}
-{{- $snippet :=  printf "(?s)%s START.(.*?).%s END" $params.snippet $params.snippet -}}
-{{- $match := findRE $snippet $fileContents -}}
-{{- range $index, $item := $match -}}
-{{- if $index -}}
-{{  if ne $params.separator "" }}
-{{ $params.separator }}
-{{ else }}
-{{ end }}
-{{- end -}}
-{{- replaceRE $snippet "$1" . | safeHTML -}}
-{{- end -}}
-{{ else }}
-File path {{ $params.path }} do not exist 
-{{- end -}}
+{{- $regex :=  printf "(?s)%s START.(.*?).%s END" $params.snippet $params.snippet -}}
+{{- $findREParams := (merge $params (dict "regex" $regex "replace" "$1")) -}}
+{{ partial "findRE.txt" $findREParams }}
