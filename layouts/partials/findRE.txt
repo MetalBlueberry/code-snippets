@@ -1,0 +1,16 @@
+{{- $params := partial "findREParams.txt" . -}}
+{{- if ( fileExists $params.path ) -}}
+{{- $fileContents := partial "fileContents.txt" $params.path -}}
+{{- $match := findRE $params.regex $fileContents -}}
+{{- range $index, $item := $match -}}
+{{- if $index -}}
+{{  if ne $params.separator "" }}
+{{ $params.separator }}
+{{ else }}
+{{ end }}
+{{- end -}}
+{{- replaceRE $params.regex $params.replace . | safeHTML -}}
+{{- end -}}
+{{- else -}}
+File path {{ $params.path }} do not exist 
+{{- end -}}

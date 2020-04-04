@@ -1,0 +1,7 @@
+{{ $params := dict  }}
+{{- if .IsNamedParams -}}
+{{- $params = dict "regex" (.Get "regex") "replace" (default "$0" (.Get "replace")) "path" (.Get "path") "separator" (default "" ( .Get "separator" )) -}}
+{{- else -}}
+{{- $params = dict "regex" (.Get 0) "replace" (default "$0" (.Get 1)) "path" (default "./code" (.Get 2)) "separator" (default "" (.Get 3))  -}}
+{{- end -}}
+{{ return $params }}

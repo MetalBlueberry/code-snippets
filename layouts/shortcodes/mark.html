@@ -1,8 +1,0 @@
-{{- $c := partial "snippet.txt" . }}
-{{- range split $c "\n" }}
-{{- if in . "#H" }}
-{{ trim .  "#H" }}
-{{- else }}
-{{ . | safeHTML }}
-{{- end -}}
-{{- end }}
